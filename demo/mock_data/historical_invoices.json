@@ -1,0 +1,161 @@
+{
+  "historical_invoices": [
+    {
+      "invoice_id": "HIST-INV-2023-156",
+      "vendor_name": "Acme Corporation",
+      "vendor_id": "VND-10001",
+      "amount": 15000.00,
+      "currency": "USD",
+      "invoice_date": "2023-10-15",
+      "due_date": "2023-11-14",
+      "status": "PAID",
+      "payment_date": "2023-11-10",
+      "payment_method": "ACH",
+      "po_reference": "PO-2023-045",
+      "matched_grn": "GRN-2023-089"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-157",
+      "vendor_name": "Acme Corporation",
+      "vendor_id": "VND-10001",
+      "amount": 15000.00,
+      "currency": "USD",
+      "invoice_date": "2023-11-15",
+      "due_date": "2023-12-15",
+      "status": "PAID",
+      "payment_date": "2023-12-12",
+      "payment_method": "ACH",
+      "po_reference": "PO-2023-056",
+      "matched_grn": "GRN-2023-102"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-158",
+      "vendor_name": "Acme Corporation",
+      "vendor_id": "VND-10001",
+      "amount": 14500.00,
+      "currency": "USD",
+      "invoice_date": "2023-12-15",
+      "due_date": "2024-01-14",
+      "status": "PAID",
+      "payment_date": "2024-01-10",
+      "payment_method": "ACH",
+      "po_reference": "PO-2023-067",
+      "matched_grn": "GRN-2023-115"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-142",
+      "vendor_name": "Global Parts Ltd",
+      "vendor_id": "VND-10002",
+      "amount": 32500.00,
+      "currency": "USD",
+      "invoice_date": "2023-09-20",
+      "due_date": "2023-11-04",
+      "status": "PAID",
+      "payment_date": "2023-11-01",
+      "payment_method": "WIRE",
+      "po_reference": "PO-2023-038",
+      "matched_grn": "GRN-2023-076"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-155",
+      "vendor_name": "Global Parts Ltd",
+      "vendor_id": "VND-10002",
+      "amount": 35000.00,
+      "currency": "USD",
+      "invoice_date": "2023-11-20",
+      "due_date": "2024-01-04",
+      "status": "PAID",
+      "payment_date": "2024-01-02",
+      "payment_method": "WIRE",
+      "po_reference": "PO-2023-058",
+      "matched_grn": "GRN-2023-108"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-148",
+      "vendor_name": "Euro Supplies GmbH",
+      "vendor_id": "VND-10003",
+      "amount": 8200.00,
+      "currency": "EUR",
+      "invoice_date": "2023-10-01",
+      "due_date": "2023-10-31",
+      "status": "PAID",
+      "payment_date": "2023-10-28",
+      "payment_method": "WIRE",
+      "po_reference": "PO-2023-042",
+      "matched_grn": "GRN-2023-082"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-159",
+      "vendor_name": "Euro Supplies GmbH",
+      "vendor_id": "VND-10003",
+      "amount": 8500.00,
+      "currency": "EUR",
+      "invoice_date": "2023-12-01",
+      "due_date": "2023-12-31",
+      "status": "PAID",
+      "payment_date": "2023-12-28",
+      "payment_method": "WIRE",
+      "po_reference": "PO-2023-065",
+      "matched_grn": "GRN-2023-112"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-150",
+      "vendor_name": "TechSupply Inc",
+      "vendor_id": "VND-10004",
+      "amount": 5000.00,
+      "currency": "USD",
+      "invoice_date": "2023-10-15",
+      "due_date": "2023-11-14",
+      "status": "PAID",
+      "payment_date": "2023-11-12",
+      "payment_method": "ACH",
+      "po_reference": "PO-2023-048",
+      "matched_grn": "GRN-2023-092"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-160",
+      "vendor_name": "TechSupply Inc",
+      "vendor_id": "VND-10004",
+      "amount": 4800.00,
+      "currency": "USD",
+      "invoice_date": "2023-12-15",
+      "due_date": "2024-01-14",
+      "status": "PAID",
+      "payment_date": "2024-01-11",
+      "payment_method": "ACH",
+      "po_reference": "PO-2023-070",
+      "matched_grn": "GRN-2023-118"
+    },
+    {
+      "invoice_id": "HIST-INV-2023-145",
+      "vendor_name": "Premium Services Co",
+      "vendor_id": "VND-10005",
+      "amount": 25000.00,
+      "currency": "USD",
+      "invoice_date": "2023-09-30",
+      "due_date": "2023-10-30",
+      "status": "DISPUTED",
+      "payment_date": null,
+      "payment_method": null,
+      "po_reference": "PO-2023-040",
+      "matched_grn": null,
+      "dispute_reason": "Services not rendered as per contract"
+    }
+  ],
+  "statistics": {
+    "total_invoices": 10,
+    "paid_count": 9,
+    "disputed_count": 1,
+    "total_paid_amount_usd": 165500.00,
+    "avg_payment_days": 28,
+    "on_time_payment_rate": 0.95
+  },
+  "metadata": {
+    "generated_at": "2024-01-15T00:00:00Z",
+    "date_range": {
+      "start": "2023-09-01",
+      "end": "2024-01-14"
+    }
+  }
+}
+

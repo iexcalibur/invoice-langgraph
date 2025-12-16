@@ -1,0 +1,236 @@
+{
+  "vendors": [
+    {
+      "vendor_id": "VND-10001",
+      "vendor_name": "Acme Corporation",
+      "normalized_name": "ACME CORPORATION",
+      "legal_name": "Acme Corporation Inc.",
+      "tax_id": "12-3456789",
+      "status": "ACTIVE",
+      "category": "SUPPLIER",
+      "payment_terms": "NET30",
+      "currency": "USD",
+      "contact": {
+        "primary_name": "John Acme",
+        "email": "accounts@acme.com",
+        "phone": "+1-555-0100",
+        "address": {
+          "street": "123 Industrial Blvd",
+          "city": "Manufacturing City",
+          "state": "CA",
+          "zip": "90210",
+          "country": "USA"
+        }
+      },
+      "enrichment": {
+        "industry": "Industrial Manufacturing",
+        "employee_count": 500,
+        "revenue_range": "$50M-$100M",
+        "founded_year": 1985,
+        "credit_score": 780,
+        "risk_rating": "LOW"
+      },
+      "history": {
+        "first_transaction_date": "2020-01-15",
+        "total_transactions": 156,
+        "total_amount": 2340000.00,
+        "avg_invoice_amount": 15000.00,
+        "payment_history": "EXCELLENT"
+      },
+      "compliance": {
+        "verified": true,
+        "last_verified_date": "2024-01-01",
+        "tax_compliant": true,
+        "w9_on_file": true,
+        "insurance_verified": true
+      }
+    },
+    {
+      "vendor_id": "VND-10002",
+      "vendor_name": "Global Parts Ltd",
+      "normalized_name": "GLOBAL PARTS LTD",
+      "legal_name": "Global Parts Limited",
+      "tax_id": "98-7654321",
+      "status": "ACTIVE",
+      "category": "SUPPLIER",
+      "payment_terms": "NET45",
+      "currency": "USD",
+      "contact": {
+        "primary_name": "Sarah Global",
+        "email": "ap@globalparts.com",
+        "phone": "+1-555-0200",
+        "address": {
+          "street": "456 Parts Avenue",
+          "city": "Components Town",
+          "state": "TX",
+          "zip": "75001",
+          "country": "USA"
+        }
+      },
+      "enrichment": {
+        "industry": "Auto Parts & Equipment",
+        "employee_count": 250,
+        "revenue_range": "$25M-$50M",
+        "founded_year": 1998,
+        "credit_score": 720,
+        "risk_rating": "LOW"
+      },
+      "history": {
+        "first_transaction_date": "2021-06-01",
+        "total_transactions": 48,
+        "total_amount": 1560000.00,
+        "avg_invoice_amount": 32500.00,
+        "payment_history": "GOOD"
+      },
+      "compliance": {
+        "verified": true,
+        "last_verified_date": "2023-12-15",
+        "tax_compliant": true,
+        "w9_on_file": true,
+        "insurance_verified": true
+      }
+    },
+    {
+      "vendor_id": "VND-10003",
+      "vendor_name": "Euro Supplies GmbH",
+      "normalized_name": "EURO SUPPLIES GMBH",
+      "legal_name": "Euro Supplies GmbH",
+      "tax_id": "DE123456789",
+      "status": "ACTIVE",
+      "category": "INTERNATIONAL_SUPPLIER",
+      "payment_terms": "NET30",
+      "currency": "EUR",
+      "contact": {
+        "primary_name": "Hans Mueller",
+        "email": "billing@eurosupplies.de",
+        "phone": "+49-30-12345678",
+        "address": {
+          "street": "Industriestrasse 78",
+          "city": "Berlin",
+          "state": "",
+          "zip": "10115",
+          "country": "Germany"
+        }
+      },
+      "enrichment": {
+        "industry": "Electronic Components",
+        "employee_count": 150,
+        "revenue_range": "€10M-€25M",
+        "founded_year": 2005,
+        "credit_score": 750,
+        "risk_rating": "LOW"
+      },
+      "history": {
+        "first_transaction_date": "2022-03-01",
+        "total_transactions": 24,
+        "total_amount": 204000.00,
+        "avg_invoice_amount": 8500.00,
+        "payment_history": "EXCELLENT"
+      },
+      "compliance": {
+        "verified": true,
+        "last_verified_date": "2023-11-01",
+        "tax_compliant": true,
+        "w9_on_file": false,
+        "insurance_verified": true
+      }
+    },
+    {
+      "vendor_id": "VND-10004",
+      "vendor_name": "TechSupply Inc",
+      "normalized_name": "TECHSUPPLY INC",
+      "legal_name": "TechSupply Incorporated",
+      "tax_id": "",
+      "status": "ACTIVE",
+      "category": "SUPPLIER",
+      "payment_terms": "NET30",
+      "currency": "USD",
+      "contact": {
+        "primary_name": "Tech Support",
+        "email": "orders@techsupply.com",
+        "phone": "+1-555-0400",
+        "address": {
+          "street": "789 Tech Park",
+          "city": "Silicon Valley",
+          "state": "CA",
+          "zip": "94025",
+          "country": "USA"
+        }
+      },
+      "enrichment": {
+        "industry": "Office Supplies",
+        "employee_count": 50,
+        "revenue_range": "$5M-$10M",
+        "founded_year": 2015,
+        "credit_score": 680,
+        "risk_rating": "MEDIUM"
+      },
+      "history": {
+        "first_transaction_date": "2023-01-01",
+        "total_transactions": 12,
+        "total_amount": 60000.00,
+        "avg_invoice_amount": 5000.00,
+        "payment_history": "GOOD"
+      },
+      "compliance": {
+        "verified": false,
+        "last_verified_date": null,
+        "tax_compliant": false,
+        "w9_on_file": false,
+        "insurance_verified": false
+      }
+    },
+    {
+      "vendor_id": "VND-10005",
+      "vendor_name": "Unknown Vendor LLC",
+      "normalized_name": "UNKNOWN VENDOR LLC",
+      "legal_name": "Unknown Vendor LLC",
+      "tax_id": "",
+      "status": "PENDING",
+      "category": "UNVERIFIED",
+      "payment_terms": "NET30",
+      "currency": "USD",
+      "contact": {
+        "primary_name": "Unknown",
+        "email": "contact@unknownvendor.com",
+        "phone": "+1-555-0999",
+        "address": {
+          "street": "999 Mystery Lane",
+          "city": "Somewhere",
+          "state": "NY",
+          "zip": "10001",
+          "country": "USA"
+        }
+      },
+      "enrichment": {
+        "industry": "Unknown",
+        "employee_count": 0,
+        "revenue_range": "Unknown",
+        "founded_year": 2024,
+        "credit_score": 0,
+        "risk_rating": "HIGH"
+      },
+      "history": {
+        "first_transaction_date": null,
+        "total_transactions": 0,
+        "total_amount": 0,
+        "avg_invoice_amount": 0,
+        "payment_history": "NO_HISTORY"
+      },
+      "compliance": {
+        "verified": false,
+        "last_verified_date": null,
+        "tax_compliant": false,
+        "w9_on_file": false,
+        "insurance_verified": false
+      }
+    }
+  ],
+  "metadata": {
+    "generated_at": "2024-01-15T00:00:00Z",
+    "total_count": 5,
+    "active_count": 4,
+    "pending_count": 1
+  }
+}
+

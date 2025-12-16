@@ -1,0 +1,29 @@
+{
+  "invoice_id": "INV-2024-002",
+  "vendor_name": "Unknown Vendor LLC",
+  "vendor_tax_id": "",
+  "invoice_date": "2024-01-20",
+  "due_date": "2024-02-19",
+  "amount": 75000.00,
+  "currency": "USD",
+  "line_items": [
+    {
+      "desc": "Consulting Services - Phase 1",
+      "qty": 1,
+      "unit_price": 45000.00,
+      "total": 45000.00
+    },
+    {
+      "desc": "Implementation Support",
+      "qty": 1,
+      "unit_price": 30000.00,
+      "total": 30000.00
+    }
+  ],
+  "attachments": [
+    "invoice_unknown_002.pdf"
+  ],
+  "po_reference": "PO-2024-999",
+  "notes": "This invoice will FAIL matching - PO doesn't exist, amount too high. Triggers HITL checkpoint for human review."
+}
+

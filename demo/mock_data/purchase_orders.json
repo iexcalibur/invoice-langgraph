@@ -1,0 +1,147 @@
+{
+  "purchase_orders": [
+    {
+      "po_id": "PO-2024-001",
+      "vendor_name": "Acme Corporation",
+      "vendor_id": "VND-10001",
+      "amount": 15000.00,
+      "currency": "USD",
+      "status": "APPROVED",
+      "created_date": "2024-01-01",
+      "expected_delivery": "2024-01-20",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "Widget Type A - Industrial Grade",
+          "quantity": 100,
+          "unit_price": 100.00,
+          "total": 10000.00
+        },
+        {
+          "line_number": 2,
+          "description": "Widget Type B - Premium",
+          "quantity": 50,
+          "unit_price": 100.00,
+          "total": 5000.00
+        }
+      ],
+      "requester": "John Smith",
+      "department": "Manufacturing",
+      "cost_center": "CC-1001",
+      "notes": "Regular quarterly order"
+    },
+    {
+      "po_id": "PO-2024-002",
+      "vendor_name": "Global Parts Ltd",
+      "vendor_id": "VND-10002",
+      "amount": 32500.00,
+      "currency": "USD",
+      "status": "APPROVED",
+      "created_date": "2024-01-05",
+      "expected_delivery": "2024-01-25",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "Component X1",
+          "quantity": 200,
+          "unit_price": 75.00,
+          "total": 15000.00
+        },
+        {
+          "line_number": 2,
+          "description": "Component X2",
+          "quantity": 100,
+          "unit_price": 100.00,
+          "total": 10000.00
+        },
+        {
+          "line_number": 3,
+          "description": "Component X3",
+          "quantity": 50,
+          "unit_price": 150.00,
+          "total": 7500.00
+        }
+      ],
+      "requester": "Jane Doe",
+      "department": "Engineering",
+      "cost_center": "CC-2001",
+      "notes": "Project Alpha components"
+    },
+    {
+      "po_id": "PO-2024-003",
+      "vendor_name": "Euro Supplies GmbH",
+      "vendor_id": "VND-10003",
+      "amount": 8500.00,
+      "currency": "EUR",
+      "status": "APPROVED",
+      "created_date": "2024-01-10",
+      "expected_delivery": "2024-02-01",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "European Components",
+          "quantity": 100,
+          "unit_price": 85.00,
+          "total": 8500.00
+        }
+      ],
+      "requester": "Bob Wilson",
+      "department": "R&D",
+      "cost_center": "CC-3001",
+      "notes": "Specialty components from EU supplier"
+    },
+    {
+      "po_id": "PO-2024-004",
+      "vendor_name": "TechSupply Inc",
+      "vendor_id": "VND-10004",
+      "amount": 5000.00,
+      "currency": "USD",
+      "status": "APPROVED",
+      "created_date": "2024-01-12",
+      "expected_delivery": "2024-01-30",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "Office Supplies",
+          "quantity": 100,
+          "unit_price": 50.00,
+          "total": 5000.00
+        }
+      ],
+      "requester": "Alice Brown",
+      "department": "Administration",
+      "cost_center": "CC-4001",
+      "notes": "Monthly office supplies"
+    },
+    {
+      "po_id": "PO-2024-005",
+      "vendor_name": "Premium Services Co",
+      "vendor_id": "VND-10005",
+      "amount": 25000.00,
+      "currency": "USD",
+      "status": "PENDING",
+      "created_date": "2024-01-15",
+      "expected_delivery": "2024-02-15",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "Consulting Services",
+          "quantity": 1,
+          "unit_price": 25000.00,
+          "total": 25000.00
+        }
+      ],
+      "requester": "Charlie Davis",
+      "department": "Operations",
+      "cost_center": "CC-5001",
+      "notes": "Pending approval - large amount"
+    }
+  ],
+  "metadata": {
+    "generated_at": "2024-01-15T00:00:00Z",
+    "total_count": 5,
+    "total_value": 86000.00,
+    "currencies": ["USD", "EUR"]
+  }
+}
+

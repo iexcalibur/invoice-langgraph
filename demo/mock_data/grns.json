@@ -1,0 +1,119 @@
+{
+  "goods_received_notes": [
+    {
+      "grn_id": "GRN-2024-001",
+      "po_id": "PO-2024-001",
+      "vendor_name": "Acme Corporation",
+      "received_date": "2024-01-18",
+      "status": "RECEIVED",
+      "received_by": "Mike Johnson",
+      "warehouse": "WH-MAIN",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "Widget Type A - Industrial Grade",
+          "quantity_ordered": 100,
+          "quantity_received": 100,
+          "quantity_accepted": 100,
+          "quantity_rejected": 0
+        },
+        {
+          "line_number": 2,
+          "description": "Widget Type B - Premium",
+          "quantity_ordered": 50,
+          "quantity_received": 50,
+          "quantity_accepted": 50,
+          "quantity_rejected": 0
+        }
+      ],
+      "notes": "All items received in good condition",
+      "inspection_status": "PASSED"
+    },
+    {
+      "grn_id": "GRN-2024-002",
+      "po_id": "PO-2024-002",
+      "vendor_name": "Global Parts Ltd",
+      "received_date": "2024-01-22",
+      "status": "RECEIVED",
+      "received_by": "Sarah Lee",
+      "warehouse": "WH-MAIN",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "Component X1",
+          "quantity_ordered": 200,
+          "quantity_received": 200,
+          "quantity_accepted": 198,
+          "quantity_rejected": 2
+        },
+        {
+          "line_number": 2,
+          "description": "Component X2",
+          "quantity_ordered": 100,
+          "quantity_received": 100,
+          "quantity_accepted": 100,
+          "quantity_rejected": 0
+        },
+        {
+          "line_number": 3,
+          "description": "Component X3",
+          "quantity_ordered": 50,
+          "quantity_received": 50,
+          "quantity_accepted": 50,
+          "quantity_rejected": 0
+        }
+      ],
+      "notes": "2 units of Component X1 rejected due to damage",
+      "inspection_status": "PASSED_WITH_EXCEPTIONS"
+    },
+    {
+      "grn_id": "GRN-2024-003",
+      "po_id": "PO-2024-003",
+      "vendor_name": "Euro Supplies GmbH",
+      "received_date": "2024-01-28",
+      "status": "RECEIVED",
+      "received_by": "Tom Clark",
+      "warehouse": "WH-INTERNATIONAL",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "European Components",
+          "quantity_ordered": 100,
+          "quantity_received": 100,
+          "quantity_accepted": 100,
+          "quantity_rejected": 0
+        }
+      ],
+      "notes": "International shipment - customs cleared",
+      "inspection_status": "PASSED"
+    },
+    {
+      "grn_id": "GRN-2024-004",
+      "po_id": "PO-2024-004",
+      "vendor_name": "TechSupply Inc",
+      "received_date": "2024-01-25",
+      "status": "PARTIAL",
+      "received_by": "Emily White",
+      "warehouse": "WH-OFFICE",
+      "line_items": [
+        {
+          "line_number": 1,
+          "description": "Office Supplies",
+          "quantity_ordered": 100,
+          "quantity_received": 75,
+          "quantity_accepted": 75,
+          "quantity_rejected": 0
+        }
+      ],
+      "notes": "Partial shipment - remaining 25 units backordered",
+      "inspection_status": "PASSED"
+    }
+  ],
+  "metadata": {
+    "generated_at": "2024-01-30T00:00:00Z",
+    "total_count": 4,
+    "fully_received": 3,
+    "partial_received": 1
+  }
+}
+
