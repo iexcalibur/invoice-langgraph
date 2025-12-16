@@ -10,7 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { useInvoke } from "@/hooks/use-invoke";
 import { InvoicePayload, LineItem } from "@/lib/types";
-import { ArrowLeft, Plus, Trash2, Upload, FileText, AlertTriangle, CheckCircle, Beaker } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Upload, FileText, AlertTriangle, CheckCircle, Beaker, Paperclip } from "lucide-react";
+import { AttachmentUpload } from "@/components/invoice/attachment-upload";
 
 // ============================================
 // SAMPLE INVOICES FOR TESTING
@@ -473,6 +474,24 @@ export default function InvokePage() {
             </div>
           </Card>
 
+          {/* Attachments */}
+          <Card className="glass p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Paperclip className="w-5 h-5 text-purple-400" />
+              <h2 className="text-xl font-semibold text-white">Attachments</h2>
+              <span className="text-white/40 text-sm">(Optional - for OCR processing)</span>
+            </div>
+            <AttachmentUpload
+              attachments={formData.attachments}
+              onChange={(attachments) => setFormData({ ...formData, attachments })}
+              maxFiles={5}
+            />
+            <p className="text-xs text-white/40 mt-3">
+              Upload invoice PDFs or images. The system will use Bigtool to select the best OCR provider 
+              (Google Vision / Tesseract / AWS Textract) for text extraction.
+            </p>
+          </Card>
+
           {/* Submit */}
           <Card className="glass p-6">
             <div className="flex items-center justify-between">
@@ -526,4 +545,3 @@ export default function InvokePage() {
     </div>
   );
 }
-
