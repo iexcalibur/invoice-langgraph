@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Shield } from "lucide-react";
+import { Sparkles, Shield, PlusCircle } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
 
   const navItems = [
+    { href: "/invoke", label: "New Invoice", icon: PlusCircle },
     { href: "/workflows", label: "Workflows", icon: Sparkles },
     { href: "/review", label: "Review Queue", icon: Shield },
   ];
@@ -46,4 +47,3 @@ export function Header() {
     </header>
   );
 }
-

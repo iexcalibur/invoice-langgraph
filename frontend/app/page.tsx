@@ -1,56 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, FileText, TrendingUp, Shield, Wifi, Sparkles } from "lucide-react";
+import { ArrowRight, FileText, TrendingUp, Shield, Wifi, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-
-const suggestedQueries = [
-  {
-    text: "Process Invoice INV-2024-001",
-    icon: FileText,
-    action: "/invoke",
-  },
-  {
-    text: "View Workflow Status",
-    icon: TrendingUp,
-    action: "/workflows",
-  },
-  {
-    text: "Review Pending Invoices",
-    icon: Shield,
-    action: "/review",
-  },
-];
 
 export default function HomePage() {
   const router = useRouter();
-  const [query, setQuery] = useState("");
-  const [isProcessing, setIsProcessing] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!query.trim()) return;
-
-    setIsProcessing(true);
-    
-    // Simple query routing
-    if (query.toLowerCase().includes("process") || query.toLowerCase().includes("invoice")) {
-      router.push("/invoke");
-    } else if (query.toLowerCase().includes("workflow") || query.toLowerCase().includes("status")) {
-      router.push("/workflows");
-    } else if (query.toLowerCase().includes("review") || query.toLowerCase().includes("pending")) {
-      router.push("/review");
-    } else {
-      router.push("/invoke");
-    }
-  };
-
-  const handleSuggestionClick = (action: string) => {
-    router.push(action);
-  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -74,43 +30,16 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Search Input */}
-          <form onSubmit={handleSubmit} className="flex gap-3 max-w-3xl mx-auto">
-            <div className="flex-1 relative">
-              <Input
-                type="text"
-                placeholder="Ask Invoice Agent to process an invoice, check workflow status..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="w-full h-14 bg-white/5 border-purple-500/20 text-white placeholder:text-white/40 rounded-xl px-6 pr-4 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50"
-                disabled={isProcessing}
-              />
-            </div>
+          {/* Single CTA */}
+          <div className="flex justify-center pt-4">
             <Button
-              type="submit"
-              disabled={isProcessing}
+              onClick={() => router.push("/invoke")}
               className="h-14 px-8 bg-white text-slate-900 hover:bg-white/90 rounded-xl font-semibold flex items-center gap-2 transition-all hover:scale-105"
             >
-              {isProcessing ? "Processing..." : "Get Started"}
+              <Plus className="w-5 h-5" />
+              Process New Invoice
               <ArrowRight className="w-5 h-5" />
             </Button>
-          </form>
-
-          {/* Suggested Queries */}
-          <div className="flex flex-wrap items-center justify-center gap-3 max-w-3xl mx-auto">
-            {suggestedQueries.map((suggestion, index) => {
-              const Icon = suggestion.icon;
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleSuggestionClick(suggestion.action)}
-                  className="group flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-purple-500/20 hover:border-purple-500/40 rounded-lg text-white/80 hover:text-white transition-all"
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="text-sm font-medium">{suggestion.text}</span>
-                </button>
-              );
-            })}
           </div>
 
           {/* Feature Cards */}
@@ -171,4 +100,3 @@ export default function HomePage() {
     </div>
   );
 }
-
