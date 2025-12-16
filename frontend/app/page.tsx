@@ -54,33 +54,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="w-full px-6 py-4 flex items-center justify-between border-b border-purple-900/20">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-xl">I</span>
-          </div>
-          <span className="text-white text-xl font-semibold">Invoice Agent</span>
-        </div>
-        
-        <nav className="flex items-center gap-6">
-          <a
-            href="/workflows"
-            className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>Workflows</span>
-          </a>
-          <a
-            href="/review"
-            className="text-white/80 hover:text-white transition-colors flex items-center gap-2"
-          >
-            <Shield className="w-4 h-4" />
-            <span>Review Queue</span>
-          </a>
-        </nav>
-      </header>
-
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="max-w-4xl w-full space-y-8">
