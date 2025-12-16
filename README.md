@@ -4,6 +4,13 @@
 
 Automate the messy 90% with AI, and handle the critical 10% with seamless Human-in-the-Loop checkpoints.
 
+<img width="1503" height="862" alt="Screenshot 2025-12-17 at 3 49 41 AM" src="https://github.com/user-attachments/assets/4361cf2e-9b49-4cd6-9e9f-6c1916c9ea9b" />
+<img width="1508" height="861" alt="Screenshot 2025-12-17 at 3 50 14 AM" src="https://github.com/user-attachments/assets/30e4519f-5d4b-4f18-802e-3df6925118d0" />
+<img width="1502" height="860" alt="Screenshot 2025-12-17 at 3 49 52 AM" src="https://github.com/user-attachments/assets/4f2dc29a-5974-43cc-8413-204ff215eaff" />
+<img width="1504" height="862" alt="Screenshot 2025-12-17 at 3 50 00 AM" src="https://github.com/user-attachments/assets/af660529-914a-47bc-af39-3be18b468e6a" />
+
+
+
 ---
 
 ## 🚀 Quick Overview
