@@ -116,15 +116,13 @@ invoice-langgraph/
 │   │   ├── graph/   # LangGraph workflow definition
 │   │   ├── mcp/     # MCP client integration
 │   │   └── api/     # FastAPI routes
-│   ├── tests/      # Test suite
-│   └── scripts/     # Utility scripts
+│   └── tests/       # Test suite
 ├── frontend/         # Next.js frontend
 │   ├── app/         # App Router pages
 │   ├── components/  # React components
 │   └── lib/         # Utilities and API client
 ├── demo/            # Sample invoices and mock data
-├── docs/             # Comprehensive documentation
-└── scripts/          # Utility scripts
+└── docs/             # Comprehensive documentation
 ```
 
 ---
