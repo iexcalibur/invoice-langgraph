@@ -264,17 +264,6 @@ The system processes invoices through 12 stages:
 
 For detailed stage descriptions and routing logic, see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
----
-
-## 📝 License
-
-MIT
-
----
-
-## 👥 Contributors
-
-Built with ❤️ for Analytos AI
 
 ---
 
