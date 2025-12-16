@@ -273,7 +273,7 @@ class BigtoolPicker:
             from langchain_anthropic import ChatAnthropic
             
             llm = ChatAnthropic(
-                model="claude-3-5-sonnet-20241022",
+                model=self.settings.anthropic_model,
                 api_key=self.settings.anthropic_api_key,
                 max_tokens=100,
             )

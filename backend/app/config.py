@@ -56,6 +56,7 @@ class Settings(BaseSettings):
     
     # === Claude API (Optional) ===
     anthropic_api_key: str | None = Field(default=None)
+    anthropic_model: str = Field(default="claude-3-5-sonnet-20241022")
     
     # === Workflow Configuration ===
     match_threshold: float = Field(default=0.90)

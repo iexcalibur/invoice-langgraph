@@ -60,6 +60,17 @@ make setup-backend
 make setup-frontend
 ```
 
+### Environment Variables (Optional)
+
+For LLM fallback in Bigtool selection, create `backend/.env` file:
+
+```bash
+ANTHROPIC_API_KEY=sk-ant-api03-...
+ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
+```
+
+**Note:** The system works without Claude API key using rule-based tool selection. The LLM fallback is only used when rule-based selection fails.
+
 ### Run Development Servers
 
 ```bash
