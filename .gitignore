@@ -3,10 +3,23 @@
 # ===================================================
 
 # === Python ===
+# Virtual environments
 backend/.venv/
-backend/__pycache__/
-backend/*.py[cod]
-backend/*$py.class
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache files (globally)
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Specific backend paths
 backend/.pytest_cache/
 backend/.ruff_cache/
 backend/.coverage
@@ -14,6 +27,12 @@ backend/htmlcov/
 backend/*.egg-info/
 backend/dist/
 backend/build/
+
+# Python cache in any directory
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
 
 # === Database ===
 backend/*.db

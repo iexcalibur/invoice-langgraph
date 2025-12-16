@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Shield, Home } from "lucide-react";
+import { Sparkles, Shield } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/", label: "Home", icon: Home },
     { href: "/workflows", label: "Workflows", icon: Sparkles },
     { href: "/review", label: "Review Queue", icon: Shield },
   ];

@@ -1,7 +1,7 @@
 "use client";
 
 import { NavItem } from "./nav-item";
-import { Home, Sparkles, Shield, FileText } from "lucide-react";
+import { Sparkles, Shield, FileText } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -9,7 +9,6 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/", label: "Home", icon: Home, exact: true },
     { href: "/workflows", label: "Workflows", icon: Sparkles },
     { href: "/review", label: "Review Queue", icon: Shield },
     { href: "/invoke", label: "Process Invoice", icon: FileText },

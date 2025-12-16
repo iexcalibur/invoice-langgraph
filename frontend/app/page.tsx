@@ -59,14 +59,18 @@ export default function HomePage() {
         <div className="max-w-4xl w-full space-y-8">
           {/* Hero Section */}
           <div className="text-center space-y-6">
-            <h1 className="text-6xl md:text-7xl font-bold text-white leading-tight">
-              Superhuman{" "}
-              <span className="gradient-text">Invoice Processing</span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+              The Autonomous{" "}
+              <span className="gradient-text">Invoice Agent</span>
             </h1>
             
-            <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Ask any question. Get RAG-powered answers, real-time workflow tracking, and risk analysis in seconds.{" "}
-              <span className="text-blue-400 font-medium">Stop searching, start knowing.</span>
+            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-medium mb-2">
+              Intelligent processing with human control.
+            </p>
+            
+            <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
+              Automate the messy 90% with AI, and handle the critical 10% with seamless{" "}
+              <span className="text-purple-400 font-medium">Human-in-the-Loop</span> checkpoints.
             </p>
           </div>
 

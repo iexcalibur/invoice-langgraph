@@ -30,7 +30,7 @@
        - /app/.next
      depends_on:
        - backend
-     command: pnpm dev
+     command: npm run dev
  
  volumes:
    backend-data:
