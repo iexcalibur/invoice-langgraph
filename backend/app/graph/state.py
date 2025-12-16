@@ -57,7 +57,7 @@ class InvoiceState(TypedDict, total=False):
     match_evidence: dict[str, Any]
     
     # === CHECKPOINT_HITL Outputs ===
-    checkpoint_id: str | None
+    hitl_checkpoint_id: str | None  # renamed from checkpoint_id (reserved by LangGraph)
     review_url: str | None
     paused_reason: str | None
     
@@ -123,7 +123,7 @@ STAGE_OUTPUT_SCHEMAS = {
         "match_evidence": dict,
     },
     "CHECKPOINT_HITL": {
-        "checkpoint_id": str,
+        "hitl_checkpoint_id": str,  # renamed from checkpoint_id (reserved)
         "review_url": str,
         "paused_reason": str,
     },

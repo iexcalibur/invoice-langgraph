@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { StageBadge } from "./stage-badge";
 import { Workflow } from "@/lib/types";
 import { STATUS_BADGE_COLORS } from "@/lib/constants";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 interface WorkflowTableProps {
@@ -95,9 +95,7 @@ export function WorkflowTable({ workflows }: WorkflowTableProps) {
                 )}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-white/60">
-                {workflow.started_at
-                  ? format(new Date(workflow.started_at), "MMM dd, HH:mm")
-                  : "-"}
+                {formatIST(workflow.started_at, "short")}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm">
                 <button

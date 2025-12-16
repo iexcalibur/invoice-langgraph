@@ -1,12 +1,14 @@
- # ===================================================
- # INVOICE LANGGRAPH AGENT - BACKEND DEPENDENCIES
- # ===================================================
- 
- # === CORE FRAMEWORK ===
- langgraph>=0.2.0
- langchain>=0.3.0
- langchain-core>=0.3.0
- langchain-anthropic>=0.2.0          # Claude integration for non-deterministic nodes
+# ===================================================
+# INVOICE LANGGRAPH AGENT - BACKEND DEPENDENCIES
+# ===================================================
+
+# === CORE FRAMEWORK ===
+langgraph>=0.2.0
+langgraph-checkpoint>=2.0.0          # Checkpoint base classes
+langgraph-checkpoint-sqlite>=2.0.0   # SQLite checkpoint support
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-anthropic>=0.2.0          # Claude integration for non-deterministic nodes
  
  # === API LAYER ===
  fastapi>=0.115.0

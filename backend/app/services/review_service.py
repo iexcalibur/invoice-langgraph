@@ -104,25 +104,43 @@ class ReviewService:
         }
     
     async def _resume_workflow(self, workflow: Workflow, checkpoint: Checkpoint) -> None:
-        """Resume workflow from checkpoint."""
+        """Resume workflow from checkpoint using LangGraph's interrupt mechanism."""
         from app.graph.builder import get_workflow_graph
         
         wf_logger = get_workflow_logger(workflow.workflow_id)
         graph = get_workflow_graph()
         
-        # Get state from checkpoint
-        state = checkpoint.state_blob.copy()
-        state["current_stage"] = StageID.RECONCILE
-        state["status"] = WorkflowStatus.RUNNING
-        
         config = {"configurable": {"thread_id": workflow.workflow_id}}
         
         try:
-            final_state = await graph.ainvoke(state, config)
+            # Update the graph state with human decision before resuming
+            # This updates the checkpointed state with the decision values
+            await graph.aupdate_state(
+                config,
+                {
+                    "human_decision": workflow.state_data.get("human_decision"),
+                    "reviewer_id": workflow.state_data.get("reviewer_id"),
+                    "reviewer_notes": workflow.state_data.get("reviewer_notes", ""),
+                },
+            )
             
-            workflow.status = final_state.get("status", WorkflowStatus.COMPLETED)
-            workflow.current_stage = final_state.get("current_stage")
-            workflow.state_data = final_state
+            wf_logger.info(f"Resuming workflow from interrupt point...")
+            
+            # Resume from interrupt by invoking with None
+            # This continues execution from where it was paused (HITL_DECISION node)
+            final_state = None
+            async for state in graph.astream(None, config):
+                final_state = state
+            
+            if final_state:
+                # Get the final values from the last node output
+                final_values = list(final_state.values())[0] if final_state else {}
+                workflow.status = final_values.get("status", WorkflowStatus.COMPLETED)
+                workflow.current_stage = final_values.get("current_stage", StageID.COMPLETE)
+                
+                # Merge final state into workflow state_data
+                for key, value in final_values.items():
+                    workflow.state_data[key] = value
             
             if workflow.status == WorkflowStatus.COMPLETED:
                 workflow.completed_at = datetime.utcnow()

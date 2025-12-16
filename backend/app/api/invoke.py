@@ -101,7 +101,7 @@ async def invoke_workflow(
         
     except ValueError as e:
         # Validation errors
-        logger.warning(f"⚠️ Validation error: {e}")
+        logger.warning("⚠️ Validation error: {}", str(e))
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail={
@@ -111,13 +111,25 @@ async def invoke_workflow(
             },
         )
     except Exception as e:
-        # Unexpected errors
-        logger.error(f"❌ Failed to start workflow: {e}", exc_info=True)
+        # Handle duplicate invoice ID error
+        error_msg = str(e)
+        if "UNIQUE constraint failed: invoices.invoice_id" in error_msg:
+            logger.warning("⚠️ Duplicate invoice ID: {}", payload.invoice_id)
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail={
+                    "error": "Duplicate invoice ID",
+                    "message": f"Invoice {payload.invoice_id} already exists. Use a different invoice ID.",
+                    "timestamp": utc_now_iso(),
+                },
+            )
+        # Unexpected errors - use {} placeholder to avoid format issues with braces in error messages
+        logger.error("❌ Failed to start workflow: {}", error_msg)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": "Failed to start workflow",
-                "message": str(e),
+                "message": error_msg,
                 "timestamp": utc_now_iso(),
             },
         )

@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { InvoicePayload } from "@/lib/types";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { FileText, Calendar, DollarSign, Building2 } from "lucide-react";
 
 interface InvoicePreviewProps {
@@ -43,10 +43,10 @@ export function InvoicePreview({ invoice, className }: InvoicePreviewProps) {
           <div>
             <p className="text-white/60 text-sm">Dates</p>
             <p className="text-white text-sm">
-              Invoice: {format(new Date(invoice.invoice_date), "MMM dd, yyyy")}
+              Invoice: {formatIST(invoice.invoice_date, "date")}
             </p>
             <p className="text-white text-sm">
-              Due: {format(new Date(invoice.due_date), "MMM dd, yyyy")}
+              Due: {formatIST(invoice.due_date, "date")}
             </p>
           </div>
         </div>

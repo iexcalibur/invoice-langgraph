@@ -5,8 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { StageBadge } from "./stage-badge";
 import { Workflow } from "@/lib/types";
 import { STATUS_BADGE_COLORS, STAGE_LABELS } from "@/lib/constants";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+import { cn, formatIST } from "@/lib/utils";
 import { ArrowRight, Clock, CheckCircle, XCircle, Pause } from "lucide-react";
 
 interface WorkflowCardProps {
@@ -92,12 +91,12 @@ export function WorkflowCard({ workflow, onClick }: WorkflowCardProps) {
       <div className="flex items-center justify-between text-xs text-white/40">
         <span>
           {workflow.started_at
-            ? `Started ${format(new Date(workflow.started_at), "MMM dd, HH:mm")}`
+            ? `Started ${formatIST(workflow.started_at, "short")}`
             : "Not started"}
         </span>
         {workflow.completed_at && (
           <span>
-            Completed {format(new Date(workflow.completed_at), "MMM dd, HH:mm")}
+            Completed {formatIST(workflow.completed_at, "short")}
           </span>
         )}
       </div>

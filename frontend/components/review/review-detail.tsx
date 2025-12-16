@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HumanReview } from "@/lib/types";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { Building2, DollarSign, Calendar, AlertTriangle } from "lucide-react";
 
 interface ReviewDetailProps {
@@ -38,7 +38,7 @@ export function ReviewDetail({ review }: ReviewDetailProps) {
             <div>
               <p className="text-white/60 text-sm">Created</p>
               <p className="text-white font-medium">
-                {format(new Date(review.created_at), "MMM dd, yyyy HH:mm")}
+                {formatIST(review.created_at, "datetime")}
               </p>
             </div>
           </div>
@@ -97,7 +97,7 @@ export function ReviewDetail({ review }: ReviewDetailProps) {
             <div className="text-right">
               <p className="text-white/60 text-sm">Expires</p>
               <p className="text-white">
-                {format(new Date(review.expires_at), "MMM dd, yyyy")}
+                {formatIST(review.expires_at, "date")}
               </p>
             </div>
           )}

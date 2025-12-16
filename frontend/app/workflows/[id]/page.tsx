@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,11 +8,11 @@ import { StageBadge } from "@/components/workflow/stage-badge";
 import { useWorkflow } from "@/hooks/use-workflows";
 import { useWorkflowLogs } from "@/hooks/use-workflow-logs";
 import { STAGES, STAGE_LABELS, STATUS_BADGE_COLORS } from "@/lib/constants";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { ArrowLeft, RefreshCw, Wifi, WifiOff } from "lucide-react";
 
-export default function WorkflowDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
+export default function WorkflowDetailPage({ params }: { params: { id: string } }) {
+  const { id } = params;
   const router = useRouter();
   const { data: workflow, isLoading, refetch } = useWorkflow(id);
   const { logs, isConnected } = useWorkflowLogs(id);
@@ -118,9 +117,7 @@ export default function WorkflowDetailPage({ params }: { params: Promise<{ id: s
             <div>
               <p className="text-white/60 text-sm mb-1">Started</p>
               <p className="text-white">
-                {workflow.started_at
-                  ? format(new Date(workflow.started_at), "MMM dd, yyyy HH:mm")
-                  : "-"}
+                {formatIST(workflow.started_at, "datetime")}
               </p>
             </div>
           </div>
@@ -131,8 +128,10 @@ export default function WorkflowDetailPage({ params }: { params: Promise<{ id: s
           <h2 className="text-xl font-semibold text-white mb-4">Stage Progress</h2>
           <div className="space-y-2">
             {STAGES.map((stage, index) => {
-              const isCompleted = index < currentStageIndex;
-              const isCurrent = index === currentStageIndex;
+              // Check if workflow is in a terminal state
+              const isTerminalState = ["COMPLETED", "FAILED", "MANUAL_HANDOFF"].includes(workflow.status);
+              const isCompleted = index < currentStageIndex || (index === currentStageIndex && isTerminalState);
+              const isCurrent = index === currentStageIndex && !isTerminalState;
               const isPending = index > currentStageIndex;
 
               return (
@@ -192,7 +191,7 @@ export default function WorkflowDetailPage({ params }: { params: Promise<{ id: s
                       {log.stage_id || "System"}
                     </span>
                     <span className="text-xs text-white/40">
-                      {format(new Date(log.created_at), "HH:mm:ss")}
+                      {formatIST(log.created_at, "time")}
                     </span>
                   </div>
                   <p className="text-sm text-white/80">{log.message}</p>

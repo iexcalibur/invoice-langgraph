@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { StageID, WorkflowStatus } from "@/lib/types";
 import { STAGE_LABELS, STATUS_BADGE_COLORS } from "@/lib/constants";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { Clock, CheckCircle, XCircle, Loader2 } from "lucide-react";
 
 interface StageDetailProps {
@@ -60,7 +60,7 @@ export function StageDetail({
           <div>
             <p className="text-white/60 text-sm mb-1">Started</p>
             <p className="text-white">
-              {format(new Date(startedAt), "MMM dd, yyyy HH:mm:ss")}
+              {formatIST(startedAt, "datetime")}
             </p>
           </div>
         )}
@@ -68,7 +68,7 @@ export function StageDetail({
           <div>
             <p className="text-white/60 text-sm mb-1">Completed</p>
             <p className="text-white">
-              {format(new Date(completedAt), "MMM dd, yyyy HH:mm:ss")}
+              {formatIST(completedAt, "datetime")}
             </p>
           </div>
         )}

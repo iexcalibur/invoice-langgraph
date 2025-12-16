@@ -2,9 +2,10 @@
 
 from functools import lru_cache
 from typing import Any
+from contextlib import asynccontextmanager
 
 from langgraph.graph import StateGraph, END
-from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
+from langgraph.checkpoint.memory import MemorySaver
 
 from app.config import get_settings, StageID
 from app.graph.state import InvoiceState
@@ -23,6 +24,17 @@ from app.graph.nodes import (
     notify_node,
     complete_node,
 )
+
+# Global memory saver instance for persistence within app lifecycle
+_memory_saver: MemorySaver | None = None
+
+
+def _get_memory_saver() -> MemorySaver:
+    """Get or create a global MemorySaver instance."""
+    global _memory_saver
+    if _memory_saver is None:
+        _memory_saver = MemorySaver()
+    return _memory_saver
 
 
 def build_invoice_graph() -> StateGraph:
@@ -93,22 +105,32 @@ def build_invoice_graph() -> StateGraph:
 @lru_cache
 def get_workflow_graph():
     """
-    Get compiled workflow graph with checkpointing.
+    Get compiled workflow graph with checkpointing and HITL interrupt.
+    
+    Uses MemorySaver for state persistence within the app lifecycle.
+    State persists across workflow executions but resets on server restart.
+    
+    The graph is configured to interrupt BEFORE the HITL_DECISION node,
+    allowing the workflow to pause for human review after CHECKPOINT_HITL.
     
     Returns:
         CompiledGraph: Ready-to-use workflow graph
     """
-    settings = get_settings()
+    from app.utils.logger import logger
     
     # Build the graph
     graph = build_invoice_graph()
     
-    # Create checkpointer for state persistence
-    db_path = settings.langgraph_checkpoint_db.replace("sqlite:///", "")
-    checkpointer = AsyncSqliteSaver.from_conn_string(f"sqlite:///{db_path}")
+    # Use MemorySaver for reliable state persistence
+    checkpointer = _get_memory_saver()
+    logger.info("Using MemorySaver checkpointer for state persistence")
     
-    # Compile with checkpointer
-    return graph.compile(checkpointer=checkpointer)
+    # Compile with checkpointer and interrupt BEFORE HITL_DECISION
+    # This pauses the workflow after CHECKPOINT_HITL to wait for human review
+    return graph.compile(
+        checkpointer=checkpointer,
+        interrupt_before=[StageID.HITL_DECISION],
+    )
 
 
 def get_graph_visualization() -> str:

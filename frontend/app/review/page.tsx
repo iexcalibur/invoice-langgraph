@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useReviews } from "@/hooks/use-reviews";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { AlertCircle, CheckCircle, XCircle, RefreshCw } from "lucide-react";
 
 export default function ReviewPage() {
@@ -120,11 +120,11 @@ export default function ReviewPage() {
 
                 <div className="mt-4 flex items-center justify-between text-xs text-white/40">
                   <span>
-                    Created {format(new Date(review.created_at), "MMM dd, HH:mm")}
+                    Created {formatIST(review.created_at, "short")}
                   </span>
                   {review.expires_at && (
                     <span>
-                      Expires {format(new Date(review.expires_at), "MMM dd")}
+                      Expires {formatIST(review.expires_at, "date")}
                     </span>
                   )}
                 </div>

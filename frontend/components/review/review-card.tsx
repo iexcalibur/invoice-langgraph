@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HumanReview } from "@/lib/types";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { AlertCircle, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -90,7 +90,7 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
 
       <div className="flex items-center justify-between text-xs text-white/40">
         <span>
-          Created {format(new Date(review.created_at), "MMM dd, HH:mm")}
+          Created {formatIST(review.created_at, "short")}
         </span>
         <ArrowRight className="w-4 h-4" />
       </div>

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useWorkflowLogs } from "@/hooks/use-workflow-logs";
 import { LogEntry } from "@/lib/types";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { Trash2, Wifi, WifiOff } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -89,7 +89,7 @@ function LogEntryItem({ log }: { log: LogEntry }) {
           <span className="text-xs text-white/60">{log.event_type}</span>
         </div>
         <span className="text-xs text-white/40">
-          {format(new Date(log.created_at), "HH:mm:ss")}
+          {formatIST(log.created_at, "time")}
         </span>
       </div>
       <p className="text-sm text-white/80">{log.message}</p>

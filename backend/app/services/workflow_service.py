@@ -1,12 +1,12 @@
 """Workflow service - Business logic for workflow operations."""
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import get_settings, WorkflowStatus, StageID
-from app.db.models import Invoice, Workflow, AuditLog
+from app.db.models import Invoice, Workflow, AuditLog, Checkpoint, HumanReview
 from app.schemas.invoice import InvoicePayload, InvokeResponse
 from app.utils.helpers import generate_workflow_id, utc_now_iso
 from app.utils.logger import logger, get_workflow_logger
@@ -126,12 +126,100 @@ class WorkflowService:
             workflow.match_score = final_state.get("match_score")
             workflow.match_result = final_state.get("match_result")
             
+            # Check if workflow was interrupted (HITL pause)
+            # When interrupt_before triggers, the graph returns with current state
+            # but the node hasn't executed yet
+            graph_state = await graph.aget_state(config)
+            if graph_state and graph_state.next:
+                # Graph has pending nodes - it was interrupted
+                if StageID.HITL_DECISION in graph_state.next:
+                    wf_logger.info(f"Workflow paused for human review at CHECKPOINT_HITL")
+                    workflow.status = WorkflowStatus.PAUSED
+                    workflow.current_stage = StageID.CHECKPOINT_HITL
+                    
+                    # Create Checkpoint and HumanReview records in database
+                    await self._create_hitl_records(workflow, final_state)
+            
             if workflow.status == WorkflowStatus.COMPLETED:
                 workflow.completed_at = datetime.utcnow()
                 wf_logger.workflow_complete(workflow.status)
+            elif workflow.status == WorkflowStatus.PAUSED:
+                wf_logger.info(f"Workflow paused - awaiting human review")
             
             await self.db.commit()
             
         except Exception as e:
             wf_logger.error(f"Graph execution error: {e}")
             raise
+    
+    async def _create_hitl_records(self, workflow: Workflow, state: dict[str, Any]) -> None:
+        """Create Checkpoint and HumanReview records for HITL pause."""
+        wf_logger = get_workflow_logger(workflow.workflow_id)
+        
+        checkpoint_id = state.get("hitl_checkpoint_id")
+        if not checkpoint_id:
+            checkpoint_id = f"cp_{workflow.workflow_id}_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+        
+        # Create Checkpoint record
+        checkpoint = Checkpoint(
+            checkpoint_id=checkpoint_id,
+            workflow_db_id=workflow.id,
+            workflow_id=workflow.workflow_id,
+            stage_id=StageID.CHECKPOINT_HITL,
+            state_blob=state,
+            paused_reason=state.get("paused_reason", "Two-way match failed - human review required"),
+            review_url=state.get("review_url", f"/review/{checkpoint_id}"),
+        )
+        self.db.add(checkpoint)
+        await self.db.flush()
+        
+        # Get invoice data from state
+        raw_payload = state.get("raw_payload", {})
+        
+        # Calculate priority based on amount and risk
+        amount = raw_payload.get("amount", 0)
+        risk_score = state.get("risk_score", 0)
+        match_score = state.get("match_score", 0)
+        
+        # Higher amount or risk = higher priority
+        priority = 5  # Default
+        if amount > 50000:
+            priority = 8
+        if risk_score > 0.5:
+            priority = max(priority, 7)
+        if match_score < 0.3:
+            priority = max(priority, 6)
+        
+        # Create HumanReview record (linked via checkpoint_db_id)
+        human_review = HumanReview(
+            checkpoint_db_id=checkpoint.id,
+            checkpoint_id=checkpoint_id,
+            invoice_id=workflow.invoice_id,
+            vendor_name=raw_payload.get("vendor_name", "Unknown"),
+            amount=amount,
+            currency=raw_payload.get("currency", "USD"),
+            reason_for_hold=state.get("paused_reason", "Two-way match failed"),
+            match_score=match_score,
+            priority=priority,
+            status="PENDING",
+            expires_at=datetime.utcnow() + timedelta(hours=72),
+        )
+        self.db.add(human_review)
+        
+        # Create audit log
+        audit_log = AuditLog(
+            workflow_db_id=workflow.id,
+            workflow_id=workflow.workflow_id,
+            event_type="hitl_checkpoint_created",
+            stage_id=StageID.CHECKPOINT_HITL,
+            message=f"Workflow paused for human review",
+            details={
+                "checkpoint_id": checkpoint_id,
+                "reason": state.get("paused_reason"),
+                "match_score": match_score,
+                "priority": priority,
+            },
+        )
+        self.db.add(audit_log)
+        
+        wf_logger.checkpoint_created(checkpoint_id, state.get("paused_reason", ""))

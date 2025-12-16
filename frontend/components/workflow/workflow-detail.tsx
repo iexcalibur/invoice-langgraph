@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useWorkflow } from "@/hooks/use-workflows";
 import { STATUS_BADGE_COLORS } from "@/lib/constants";
-import { format } from "date-fns";
+import { formatIST } from "@/lib/utils";
 import { RefreshCw, Wifi, WifiOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -88,17 +88,13 @@ export function WorkflowDetail({ workflowId }: WorkflowDetailProps) {
           <div>
             <p className="text-white/60 text-sm mb-1">Started</p>
             <p className="text-white">
-              {workflow.started_at
-                ? format(new Date(workflow.started_at), "MMM dd, HH:mm")
-                : "-"}
+              {formatIST(workflow.started_at, "short")}
             </p>
           </div>
           <div>
             <p className="text-white/60 text-sm mb-1">Completed</p>
             <p className="text-white">
-              {workflow.completed_at
-                ? format(new Date(workflow.completed_at), "MMM dd, HH:mm")
-                : "-"}
+              {formatIST(workflow.completed_at, "short")}
             </p>
           </div>
         </div>

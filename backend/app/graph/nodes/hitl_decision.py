@@ -25,7 +25,7 @@ async def hitl_decision_node(state: InvoiceState) -> dict[str, Any]:
     human_decision = state.get("human_decision")
     reviewer_id = state.get("reviewer_id")
     reviewer_notes = state.get("reviewer_notes", "")
-    checkpoint_id = state.get("checkpoint_id")
+    checkpoint_id = state.get("hitl_checkpoint_id")  # renamed from checkpoint_id (reserved)
     
     # Log the decision
     logger.workflow_resumed(checkpoint_id or "unknown", human_decision or "unknown")

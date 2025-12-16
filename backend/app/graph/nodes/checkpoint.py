@@ -56,7 +56,7 @@ async def checkpoint_node(state: InvoiceState) -> dict[str, Any]:
     logger.stage_complete(StageID.CHECKPOINT_HITL)
     
     return {
-        "checkpoint_id": checkpoint_id,
+        "hitl_checkpoint_id": checkpoint_id,  # renamed from checkpoint_id (reserved by LangGraph)
         "review_url": review_url,
         "paused_reason": paused_reason,
         "status": WorkflowStatus.PAUSED,

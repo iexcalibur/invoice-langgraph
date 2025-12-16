@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
@@ -13,8 +12,8 @@ import { useDecision } from "@/hooks/use-decision";
 import { format } from "date-fns";
 import { ArrowLeft, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 
-export default function ReviewDetailPage({ params }: { params: Promise<{ checkpointId: string }> }) {
-  const { checkpointId } = use(params);
+export default function ReviewDetailPage({ params }: { params: { checkpointId: string } }) {
+  const { checkpointId } = params;
   const router = useRouter();
   const { data: review, isLoading } = useReview(checkpointId);
   const { mutate: submitDecision, isPending } = useDecision();

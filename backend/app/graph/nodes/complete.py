@@ -62,8 +62,8 @@ async def complete_node(state: InvoiceState) -> dict[str, Any]:
         {"stage": "MATCH_TWO_WAY", "status": "completed", "score": state.get("match_score")},
     ]
     
-    if state.get("checkpoint_id"):
-        audit_log.append({"stage": "CHECKPOINT_HITL", "status": "completed", "checkpoint_id": state.get("checkpoint_id")})
+    if state.get("hitl_checkpoint_id"):
+        audit_log.append({"stage": "CHECKPOINT_HITL", "status": "completed", "checkpoint_id": state.get("hitl_checkpoint_id")})
         audit_log.append({"stage": "HITL_DECISION", "status": "completed", "decision": state.get("human_decision")})
     
     if final_status != WorkflowStatus.MANUAL_HANDOFF:
