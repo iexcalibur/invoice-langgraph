@@ -1,53 +1,128 @@
- # ===================================================
- # INVOICE LANGGRAPH AGENT - GITIGNORE
- # ===================================================
- 
- # === Python ===
- backend/.venv/
- backend/__pycache__/
- backend/*.py[cod]
- backend/*$py.class
- backend/.pytest_cache/
- backend/.ruff_cache/
- backend/.coverage
- backend/htmlcov/
- backend/*.egg-info/
- backend/dist/
- backend/build/
- 
- # === Database ===
- backend/*.db
- backend/*.sqlite
- backend/*.sqlite3
- 
- # === Node.js ===
- frontend/node_modules/
- frontend/.next/
- frontend/.turbo/
- frontend/out/
- 
- # === Environment ===
- .env
- .env.local
- .env.*.local
- backend/.env
- frontend/.env.local
- 
- # === IDE ===
- .idea/
- .vscode/
- *.swp
- *.swo
- .DS_Store
- 
- # === Logs ===
- *.log
- logs/
- 
- # === Demo artifacts ===
- demo/screenshots/*.png
- !demo/screenshots/.gitkeep
- 
- # === Docker ===
- docker-compose.override.yml
+# ===================================================
+# INVOICE LANGGRAPH AGENT - GITIGNORE
+# ===================================================
 
+# === Python ===
+backend/.venv/
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/.pytest_cache/
+backend/.ruff_cache/
+backend/.coverage
+backend/htmlcov/
+backend/*.egg-info/
+backend/dist/
+backend/build/
+
+# === Database ===
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+
+# === Node.js / Frontend ===
+frontend/node_modules/
+frontend/.pnpm-store/
+frontend/.yarn/
+frontend/.yarn/cache
+frontend/.yarn/unplugged
+frontend/.yarn/build-state.yml
+frontend/.yarn/install-state.gz
+frontend/.pnp.*
+
+# === Next.js ===
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+frontend/.turbo/
+frontend/.vercel/
+frontend/.swc/
+frontend/next-env.d.ts
+frontend/.next-env.d.ts
+
+# === TypeScript ===
+frontend/*.tsbuildinfo
+frontend/tsconfig.tsbuildinfo
+
+# === Package Manager Logs ===
+frontend/yarn-error.log
+frontend/pnpm-debug.log*
+frontend/npm-debug.log*
+frontend/lerna-debug.log*
+
+# === Testing ===
+frontend/.jest/
+frontend/coverage/
+frontend/.nyc_output/
+frontend/.playwright/
+frontend/playwright-report/
+frontend/test-results/
+
+# === Frontend Build & Cache ===
+frontend/.cache/
+frontend/.parcel-cache/
+frontend/.vite/
+frontend/.svelte-kit/
+frontend/.nuxt/
+frontend/.output/
+frontend/.vuepress/dist/
+frontend/.eslintcache
+frontend/.stylelintcache
+frontend/.prettiercache
+
+# === Storybook ===
+frontend/.storybook-out/
+frontend/storybook-static/
+
+# === Frontend IDE ===
+frontend/.vscode-test/
+
+# === Environment ===
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env.local
+frontend/.env*.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/.env.development
+frontend/.env.test
+frontend/.env.production
+
+# === IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.vscode-test/
+
+# === Temporary Files ===
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+.*.swp
+.*.swo
+
+# === Lock Files (keep pnpm-lock.yaml) ===
+package-lock.json
+yarn.lock
+# Keep: pnpm-lock.yaml (should be committed)
+
+# === Logs ===
+*.log
+logs/
+
+# === Demo artifacts ===
+demo/screenshots/*.png
+!demo/screenshots/.gitkeep
+
+# === Docker ===
+docker-compose.override.yml

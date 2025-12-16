@@ -15,10 +15,10 @@
  	@echo "  make setup-backend  - Setup backend only"
  	@echo "  make setup-frontend - Setup frontend only"
  	@echo ""
- 	@echo "$(GREEN)Development:$(RESET)"
- 	@echo "  make dev            - Run both backend and frontend (requires 2 terminals)"
- 	@echo "  make backend        - Run backend only (port 8000)"
- 	@echo "  make frontend       - Run frontend only (port 3000)"
+	@echo "$(GREEN)Development:$(RESET)"
+	@echo "  make dev            - Run both backend and frontend together"
+	@echo "  make backend        - Run backend only (port 8000)"
+	@echo "  make frontend       - Run frontend only (port 3000)"
  	@echo ""
  	@echo "$(GREEN)Database:$(RESET)"
  	@echo "  make db-init        - Initialize database tables"
@@ -61,15 +61,18 @@
  # DEVELOPMENT SERVERS
  # ============================================
  
- dev:
- 	@echo "$(YELLOW)Starting development servers...$(RESET)"
- 	@echo "$(CYAN)Run these commands in separate terminals:$(RESET)"
- 	@echo "  Terminal 1: make backend"
- 	@echo "  Terminal 2: make frontend"
- 	@echo ""
- 	@echo "$(GREEN)Backend:$(RESET)  http://localhost:8000"
- 	@echo "$(GREEN)Frontend:$(RESET) http://localhost:3000"
- 	@echo "$(GREEN)API Docs:$(RESET) http://localhost:8000/docs"
+dev:
+	@echo "$(YELLOW)Starting development servers...$(RESET)"
+	@echo "$(GREEN)Backend:$(RESET)  http://localhost:8000"
+	@echo "$(GREEN)Frontend:$(RESET) http://localhost:3000"
+	@echo "$(GREEN)API Docs:$(RESET) http://localhost:8000/docs"
+	@echo "$(CYAN)Press Ctrl+C to stop both servers$(RESET)"
+	@echo ""
+	@bash -c ' \
+		trap "kill 0" EXIT INT TERM; \
+		(cd backend && source .venv/bin/activate && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000) & \
+		(cd frontend && pnpm dev) & \
+		wait'
  
  backend:
  	@echo "$(CYAN)Starting backend server...$(RESET)"
